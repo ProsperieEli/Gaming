@@ -28,31 +28,64 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-    test('returns animals', async() => {
+    test('returns games_owned', async() => {
 
       const expectation = [
         {
-          'id': 1,
-          'name': 'bessie',
-          'cool_factor': 3,
-          'owner_id': 1
+          id: 1,
+          name: 'Marvel\'s Avengers',
+          owner_id: 1
         },
         {
-          'id': 2,
-          'name': 'jumpy',
-          'cool_factor': 4,
-          'owner_id': 1
+          id: 2,
+          name: 'Red Dead Redemption 2',
+          owner_id: 1
         },
         {
-          'id': 3,
-          'name': 'spot',
-          'cool_factor': 10,
-          'owner_id': 1
+          id: 3,
+          name: 'League of Legends',
+          owner_id: 1
+        },
+        {
+          id: 4,
+          name: 'Spider-Man: Miles Morales',
+          owner_id: 1
+        },
+        {
+          id: 5, 
+          name: 'Ghost of Tsushima',
+          owner_id: 1
+        },
+        {
+          id: 6,
+          name: 'Spider-Man',
+          owner_id: 1
         }
+      
+        
+      
       ];
+      const data = await fakeRequest(app)
+        .get('/games_owned')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+
+    });
+
+    test('returns games_owned', async() => {
+
+      const expectation = 
+        {
+          id: 1,
+          name: 'Marvel\'s Avengers',
+          owner_id: 1
+        }
+      ;
 
       const data = await fakeRequest(app)
-        .get('/animals')
+        .get('/games_owned/1')
         .expect('Content-Type', /json/)
         .expect(200);
 
@@ -60,3 +93,4 @@ describe('app routes', () => {
     });
   });
 });
+
