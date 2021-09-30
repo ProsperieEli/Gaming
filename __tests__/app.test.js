@@ -91,6 +91,57 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
+    
+
+    test('returns all games_owned', async() => {
+
+      const expectation = 
+      {
+        id: expect.any(Number),
+        name: 'CyberPunk 2077',
+        owner_id: 1
+      };
+      const data = await fakeRequest(app)
+        .post('/games_owned')
+        .send({  name: 'CyberPunk 2077' })
+        .expect('Content-Type', /json/)
+        .expect(200);
+    
+      expect(data.body).toEqual(expectation);
+    });
+    
+    test('update all games_owned', async() => {
+      const expectation = 
+      {
+        id: expect.any(Number),
+        name: 'CyberPunk 2077',
+        owner_id: 1
+      };
+      const data = await fakeRequest(app)
+        .put('/games_owned/7')
+        .send({ name: 'CyberPunk 2077' })
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+    test('delete a test', async() => {
+      const expectation = 
+      {
+        id: expect.any(Number),
+        name: 'CyberPunk 2077',
+        owner_id: 1
+      };
+      const data = await fakeRequest(app)
+        .delete('/games_owned/7')
+        .send({ name: 'CyberPunk 2077' })
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
   });
 });
+
+
 
