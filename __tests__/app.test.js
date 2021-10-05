@@ -32,38 +32,41 @@ describe('app routes', () => {
 
       const expectation = [
         {
-          id: 1,
-          name: 'Marvel\'s Avengers',
-          owner_id: 1
+          'id': 1,
+          'name': 'Marvel\'s Avengers',
+          'owner_id': 1,
+          'genre': 'Action'
         },
         {
-          id: 2,
-          name: 'Red Dead Redemption 2',
-          owner_id: 1
+          'id': 2,
+          'name': 'Red Dead Redemption 2',
+          'owner_id': 1,
+          'genre': 'Open-World'
         },
         {
-          id: 3,
-          name: 'League of Legends',
-          owner_id: 1
+          'id': 3,
+          'name': 'League of Legends',
+          'owner_id': 1,
+          'genre': 'Action'
         },
         {
-          id: 4,
-          name: 'Spider-Man: Miles Morales',
-          owner_id: 1
+          'id': 4,
+          'name': 'Spider-Man: Miles Morales',
+          'owner_id': 1,
+          'genre': 'Open-World'
         },
         {
-          id: 5, 
-          name: 'Ghost of Tsushima',
-          owner_id: 1
+          'id': 5,
+          'name': 'Ghost of Tsushima',
+          'owner_id': 1,
+          'genre': 'Open-World'
         },
         {
-          id: 6,
-          name: 'Spider-Man',
-          owner_id: 1
+          'id': 6,
+          'name': 'Spider-Man',
+          'owner_id': 1,
+          'genre': 'Open-World'
         }
-      
-        
-      
       ];
       const data = await fakeRequest(app)
         .get('/games_owned')
@@ -74,18 +77,19 @@ describe('app routes', () => {
 
     });
 
-    test('returns games_owned', async() => {
+    test('returns one games owned', async() => {
 
       const expectation = 
-        {
-          id: 1,
-          name: 'Marvel\'s Avengers',
-          owner_id: 1
-        }
-      ;
+            {
+              'id': 3,
+              'name': 'League of Legends',
+              'owner_id': 1,
+              'genre': 'Action'
+            }
+          ;
 
       const data = await fakeRequest(app)
-        .get('/games_owned/1')
+        .get('/games_owned/3')
         .expect('Content-Type', /json/)
         .expect(200);
 
@@ -93,17 +97,18 @@ describe('app routes', () => {
     });
     
 
-    test('returns all games_owned', async() => {
+    test('post games owned', async() => {
 
       const expectation = 
-      {
-        id: expect.any(Number),
-        name: 'CyberPunk 2077',
-        owner_id: 1
-      };
+          {
+            'id': expect.any(Number),
+            'name': 'Sonic',
+            'owner_id': 1,
+            'genre_id': 2
+          };
       const data = await fakeRequest(app)
         .post('/games_owned')
-        .send({  name: 'CyberPunk 2077' })
+        .send({  name: 'Sonic', genre_id:2 })
         .expect('Content-Type', /json/)
         .expect(200);
     
@@ -112,14 +117,15 @@ describe('app routes', () => {
     
     test('update all games_owned', async() => {
       const expectation = 
-      {
-        id: expect.any(Number),
-        name: 'CyberPunk 2077',
-        owner_id: 1
-      };
+          {
+            id: expect.any(Number),
+            name: 'Sonic',
+            owner_id: 1,
+            genre_id: 2
+          };
       const data = await fakeRequest(app)
         .put('/games_owned/7')
-        .send({ name: 'CyberPunk 2077' })
+        .send({ name: 'Sonic', genre_id: 2 })
         .expect('Content-Type', /json/)
         .expect(200);
 
@@ -127,14 +133,15 @@ describe('app routes', () => {
     });
     test('delete a test', async() => {
       const expectation = 
-      {
-        id: expect.any(Number),
-        name: 'CyberPunk 2077',
-        owner_id: 1
-      };
+          {
+            id: expect.any(Number),
+            name: 'Sonic',
+            owner_id: 1,
+            genre_id:2
+          };
       const data = await fakeRequest(app)
         .delete('/games_owned/7')
-        .send({ name: 'CyberPunk 2077' })
+        .send({ name: 'Sonic', genre_id: 2 })
         .expect('Content-Type', /json/)
         .expect(200);
 
