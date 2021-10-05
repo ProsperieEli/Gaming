@@ -17,10 +17,15 @@ async function run() {
                     email VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
                 );           
+                CREATE TABLE categories (
+                  id SERIAL PRIMARY KEY,
+                  genre VARCHAR(512) NOT NULL
+                );
                 CREATE TABLE games_owned (
                     id SERIAL PRIMARY KEY NOT NULL,
                     name VARCHAR(512) NOT NULL,
-                    owner_id INTEGER NOT NULL REFERENCES users(id)
+                    owner_id INTEGER NOT NULL REFERENCES users(id),
+                    genre_id INTEGER NOT NULL REFERENCES categories(id)
             );
         `);
 

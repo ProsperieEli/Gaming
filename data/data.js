@@ -1,27 +1,34 @@
-const gamesOwned =  [{
+const gamesOwned =  [
+  {
  
-  'name': 'Marvel\'s Avengers'
-},
-{
+    'name': 'Marvel\'s Avengers',
+    'genre_id': 1
+  },
+  {
 
-  'name': 'Red Dead Redemption 2'
-},
-{
+    'name': 'Red Dead Redemption 2',
+    'genre_id': 2
+  },
+  {
 
-  'name': 'League of Legends'
-},
-{
+    'name': 'League of Legends',
+    'genre_id': 1
+  },
+  {
 
-  'name': 'Spider-Man: Miles Morales'
-},
-{
+    'name': 'Spider-Man: Miles Morales',
+    'genre_id': 2
+  },
+  {
   
-  'name': 'Ghost of Tsushima'
-},
-{
+    'name': 'Ghost of Tsushima',
+    'genre_id': 2
+  },
+  {
   
-  'name': 'Spider-Man'
-}
+    'name': 'Spider-Man',
+    'genre_id': 2
+  }
 
 ];
 

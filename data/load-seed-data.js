@@ -4,6 +4,7 @@ const client = require('../lib/client');
 const usersData = require('./users.js');
 const { getEmoji } = require('../lib/emoji.js');
 const { gamesOwned } = require('./data.js');
+const { categories } = require('./genre.js');
 run();
 
 async function run() {
@@ -24,14 +25,24 @@ async function run() {
     );
       
     const user = users[0].rows[0];
+    await Promise.all(
+      categories.map(category => {
+        return client.query(`
+                    INSERT INTO categories (genre)
+                    VALUES ($1);
+                `,
+        [category.genre]);
+      })
+    );
+    
 
     await Promise.all(
       gamesOwned.map(game => {
         return client.query(`
-                    INSERT INTO games_owned (name, owner_id)
-                    VALUES ($1, $2);
+                    INSERT INTO games_owned (name, owner_id, genre_id)
+                    VALUES ($1, $2, $3);
                 `,
-        [game.name, user.id]);
+        [game.name, user.id, game.genre_id]);
       })
     );
     
